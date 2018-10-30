@@ -1,0 +1,10 @@
+@media (min-width: 959px) {
+   .file-upload{
+   		margin:10%;
+   }
+}
+@media (max-width: 958px) {
+	.file-upload{
+		margin:10%;
+	}
+}
