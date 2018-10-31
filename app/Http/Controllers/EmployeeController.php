@@ -23,6 +23,12 @@ class EmployeeController extends BaseController
    		$document=Document::whereIn('id',$documents[0])->OrderBy('created_at','DESC')->get();
    		return view("employee.employee_home",['documents'=>$document]);
    	}
+    public function signedDocuments(){
+      $documents[]=DocumentUser::where('user_id',Auth::user()->id)->where('is_signed',true)->get()->pluck('document_id');
+      $document=Document::whereIn('id',$documents[0])->OrderBy('created_at','DESC')->with('docusers')->get();
+      // return $document;
+      return view("employee.signedDocuments",['documents'=>$document]);
+    }
    	public function viewDocument($doc_id){
         $document =Document::select('document_url','id')->where('id',$doc_id)->first();
         $documentuser =DocumentUser::where('user_id',Auth::user()->id)->where('document_id',$doc_id)->first();

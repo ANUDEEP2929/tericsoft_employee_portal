@@ -1,4 +1,9 @@
 @extends("../layouts/employee_layout");
+<style>
+tbody a:hover{
+	text-decoration: none;
+}
+</style>
 @section('employee_content')
 	<div class="m-portlet m-portlet--mobile">
 		<div class="m-portlet__body">
@@ -17,23 +22,29 @@
 				<thead>
 					<tr>
 						<th title="Field #1">
-							Document
+							File
 						</th>
 						<th title="Field #2">
-							Signed On
+							View File
+						</th>
+						<th title="Field #3">
+							Signed on
 						</th>
 					</tr>
 				</thead>
 				<tbody>
+				<?php foreach ($documents as $document){ ?>
 					<tr>
 						<td>
-							<a href="#">
+							<a href="/employee/document/{{$document->id}}">
 								<i class="flaticon-file-1"></i>
-								Terms_conditions.pdf
+								{{$document->document_name}}
 							</a>
 						</td>
-						<td>9/10/2018</td>
+						<td><a href="/employee/document/{{$document->id}}"><i class="flaticon-eye"></i></a></td>
+						<td>{{$document->docusers->signed_on}}</td>
 					</tr>
+				<?php } ?>
 				</tbody>
 			</table>
 		</div>

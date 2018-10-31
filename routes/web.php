@@ -42,7 +42,7 @@ Route::group(['prefix'=>'employee', 'middleware' => ['before'=>'auth','after'=>'
 	Route::get('/employee_home','EmployeeController@getDocuments');
 	Route::get('/document/{doc_id}','EmployeeController@viewDocument');
 	Route::get('/notifications','EmployeeController@allNotifications');
-	Route::get('/signedDocuments',function(){return view('employee.allNotifications');});
+	Route::get('/signedDocuments','EmployeeController@signedDocuments');
 
 	Route::post('/saveSignature','EmployeeController@saveSignature');
 	// Route::get('/allEmployees','EmployeeController@allEmployees');
