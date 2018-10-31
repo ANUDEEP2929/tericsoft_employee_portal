@@ -21,6 +21,7 @@ class CreateDocumentUsersTable extends Migration
             $table->boolean('is_signed')->default(false);
             $table->string('accepted_on')->nullable();
             $table->string('signed_on')->nullable();       
+            $table->string('sign_img')->nullable();
             $table->timestamps();
         });
     }

@@ -191,7 +191,7 @@
                 <!-- END: Left Aside -->
                 <div class="m-grid__item m-grid__item--fluid m-wrapper">
                     <!-- BEGIN: Subheader -->
-                    <div class="m-subheader ">
+                   {{--  <div class="m-subheader ">
                         <div class="d-flex align-items-center"  style="width:100%">
                             <div class="mr-auto"  style="width:100%">
                                 <h3 class="m-subheader__title " style="width:100%">
@@ -199,7 +199,7 @@
                             </div>
 
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- END: Subheader -->
                     <div class="m-content">
                             @yield('admin_content')

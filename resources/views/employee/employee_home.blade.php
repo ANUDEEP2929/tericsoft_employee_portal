@@ -33,16 +33,18 @@ tbody a:hover{
 					</tr>
 				</thead>
 				<tbody>
+				<?php foreach ($documents as $document){ ?>
 					<tr>
 						<td>
-							<a href="#">
+							<a href="/employee/document/{{$document->id}}">
 								<i class="flaticon-file-1"></i>
-								Terms_conditions.pdf
+								{{$document->document_name}}
 							</a>
 						</td>
-						<td><a href="/employee/document"><i class="flaticon-eye"></i></a></td>
-						<td><i class="flaticon-download"></i></td>
+						<td><a href="/employee/document/{{$document->id}}"><i class="flaticon-eye"></i></a></td>
+						<td><a href="{{asset("$document->document_url")}}" download><i class="flaticon-download"></i></a></td>
 					</tr>
+				<?php } ?>
 				</tbody>
 			</table>
 		</div>

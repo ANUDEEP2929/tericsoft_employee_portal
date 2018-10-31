@@ -39,11 +39,11 @@ Route::group(['prefix'=>'admin', 'middleware' => ['before'=>'auth','after'=>'rol
 });
 
 Route::group(['prefix'=>'employee', 'middleware' => ['before'=>'auth','after'=>'role:employee']], function () {
-	Route::get('/employee_home',function(){return view('employee.employee_home');});
-	Route::get('/document',function(){return view('employee.document');});
-	// Route::get('/document/{id}','EmployeeController@openDocument');
-	Route::get('/signedDocuments',function(){return view('employee.signedDocuments');});
-	Route::get('/notifications',function(){return view('employee.allNotifications');});
+	Route::get('/employee_home','EmployeeController@getDocuments');
+	Route::get('/document/{doc_id}','EmployeeController@viewDocument');
+	Route::get('/notifications','EmployeeController@allNotifications');
+	Route::get('/signedDocuments',function(){return view('employee.allNotifications');});
 
+	Route::post('/saveSignature','EmployeeController@saveSignature');
 	// Route::get('/allEmployees','EmployeeController@allEmployees');
 });

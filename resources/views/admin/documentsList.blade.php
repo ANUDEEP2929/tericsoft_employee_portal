@@ -42,7 +42,7 @@ tbody a:hover{
 							</a>
 						</td>
 						<td><a href="/admin/viewDocument/{{$document->id}}"><i class="flaticon-eye"></i></a></td>
-						<td><a href="{{$document->document_url}}"><i class="flaticon-download"></i></a></td>
+						<td><a href="{{asset("$document->document_url")}}" download><i class="flaticon-download"></i></a></td>
 					</tr>
 				<?php } ?>
 				</tbody>

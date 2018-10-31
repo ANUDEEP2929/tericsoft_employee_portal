@@ -5,7 +5,7 @@
 @section('admin_content')
 	<div class="m-portlet m-portlet--mobile">
 		<div class="m-portlet__body">
-			<embed src="{{asset("storage/app/$document_url->document_url")}}" width="100%" height="500px" />
+			<embed src="{{asset("$document->document_url")}}" width="100%" height="500px" />
 			<hr>
 			<table class="m-datatable" id="html_table" width="100%">
 				<thead>
@@ -27,9 +27,9 @@
 					?>
 					<tr>
 						<td>
-							{{$user->name}}
+							{{$user->users->name}}
 						</td>
-						<td>{{$user->email}}</td>
+						<td>{{$user->users->email}}</td>
 						<td>9/10/2018</td>
 					</tr>
 					<?php } ?>

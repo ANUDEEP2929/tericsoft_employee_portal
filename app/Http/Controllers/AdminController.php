@@ -37,8 +37,8 @@ class AdminController extends BaseController
     }
     public function viewDocument($doc_id){
         $document =Document::select('document_url')->where('id',$doc_id)->first();
-        $users_signed=DocumentUser::where('is_signed',true)->get();
-        return view('admin.view_document',['document_url'=>$document,'signed_users'=>$users_signed]);
+        $users_signed=DocumentUser::where('is_signed',true)->with('users')->get();
+        return view('admin.view_document',['document'=>$document,'signed_users'=>$users_signed]);
 
     }
 
@@ -124,10 +124,11 @@ class AdminController extends BaseController
             // return $employee_ids;
              if ($request->hasFile('document')) {
                 $file = $request->file('document');
-                $filePath = Storage::disk('local')->put('company_documents', $file);
+                $filename=$file->getClientOriginalName();
+                $filePath = Storage::disk('local')->put('public/company_documents',$file);
                 $document= new Document;
-                $document->document_url=$filePath;
-                $document->document_name=$file->getClientOriginalName();
+                $document->document_url=Storage::url($filePath);
+                $document->document_name=$filename;
                 $document->type=$file->extension();
                 $document->admin_id=Auth::user()->id;
                 if($document->save())
@@ -145,7 +146,7 @@ class AdminController extends BaseController
                         }
                     }
                     DB::commit();
-                    return redirect('admin/admin_home');
+                    return redirect('admin/sendDocuments');
                 }
                 else{
                     DB::rollback();
@@ -190,7 +191,7 @@ class AdminController extends BaseController
                     }
                 }
                 DB::commit();
-                return redirect('admin/admin_home');
+                return redirect('admin/sendNotifications');
             }
             else{
                     DB::rollback();
